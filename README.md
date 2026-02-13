@@ -1,6 +1,6 @@
 # HR Analytics: Employee Attrition & Performance Analysis
 
-![SQL](https://img.shields.io/badge/Language-SQL-orange)
+![SQL](https://img.shields.io/badge/Language-MySQL-orange)
 ![Power BI](https://img.shields.io/badge/Tool-Power%20BI-F2C811)
 ![Status](https://img.shields.io/badge/Status-In%20Progress-yellow)
 
