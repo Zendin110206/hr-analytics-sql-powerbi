@@ -1,5 +1,17 @@
--- Mengecek data apakah sudah berhasil di load dan sesuai dengan ekspetasi
+/*
+=============================================================================
+PROJECT: HR Analytics - Employee Attrition & Performance
+AUTHOR: Muhammad Zaenal Abidin Abdurrahman
+DATABASE: MySQL
+DESCRIPTION:
+  End-to-end data engineering script:
+  audit, BOM fix, feature engineering, and master view creation for BI.
+=============================================================================
+*/
 
+USE hr_analytics;
+
+-- Mengecek data apakah sudah berhasil di load dan sesuai dengan ekspetasi
 select *
 from hr_analytics.ibm_hr_attrition;
 
@@ -16,6 +28,20 @@ show columns from hr_analytics.ibm_hr_attrition;
 -- Secara intuitive dan jika dilihat sekilas maka kolom yang sepertinya tidak akan berguna adalah : 
 select distinct EmployeeCount, Over18, StandardHours
 from hr_analytics.ibm_hr_attrition;
+
+
+-- Constant column audit (better than DISTINCT multi-column) 
+SELECT
+  COUNT(DISTINCT EmployeeCount)  AS dc_employee_count,
+  MIN(EmployeeCount)             AS min_employee_count,
+  MAX(EmployeeCount)             AS max_employee_count,
+  COUNT(DISTINCT Over18)         AS dc_over18,
+  MIN(Over18)                    AS min_over18,
+  MAX(Over18)                    AS max_over18,
+  COUNT(DISTINCT StandardHours)  AS dc_standard_hours,
+  MIN(StandardHours)             AS min_standard_hours,
+  MAX(StandardHours)             AS max_standard_hours
+FROM hr_analytics.ibm_hr_attrition;
 
 -- check duplikat
 select count(DISTINCT EmployeeNumber) AS UniqueEmployeeNumber, count(*) AS DataCount
@@ -72,6 +98,8 @@ where YearsAtCompany > TotalWorkingYears;
 -- TICKET #03: Data Cleaning & Feature Engineering
 
 -- Menghapus kolom yang tidak bermanfaat (Pastikan selalu memiliki backup ataupun juga bisa menggunakan view table)
+-- Recommendation: DO NOT mutate raw table (drop columns) for analytics.
+-- Instead, handle exclusions via VIEW.
 alter table hr_analytics.ibm_hr_attrition
 	drop column EmployeeCount, 
     drop column Over18, 
