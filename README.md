@@ -7,6 +7,10 @@
 ## Dashboard Architecture Preview
 ![Dashboard Landing Page](visualization/landing_page_preview.png)
 
+### Module 01: Executive Strategic View (Completed)
+*High-level KPIs, Financial Impact Analysis ($9.25M Loss), and Workforce Demographics.*
+![Executive View](visualization/executive_view_preview.png)
+
 > **Current Status:** This project is currently under active development. The Data Engineering (SQL) pipeline and UI/UX Architecture are complete. Development is now focused on finalizing the visualization modules (Executive View, Root Cause Analysis, and Risk Action List).
 
 ---
