@@ -8,10 +8,11 @@
 ![Dashboard Landing Page](visualization/landing_page_preview.png)
 
 ### Module 01: Executive Strategic View (Completed)
-*High-level KPIs, Financial Impact Analysis ($9.25M Loss), and Workforce Demographics.*
+*High-level KPIs, Financial Impact Analysis ($9.25M Loss), and Workforce Demographics.*<br>
+
 ![Executive View](visualization/executive_view_preview.png)
 
-> **Current Status:** This project is currently under active development. The Data Engineering (SQL) pipeline and UI/UX Architecture are complete. Development is now focused on finalizing the visualization modules (Executive View, Root Cause Analysis, and Risk Action List).
+> **Current Status:** This project is currently under active development. The Data Engineering (SQL) pipeline and UI/UX Architecture are complete. Development is now focused on finalizing the visualization modules (Root Cause Analysis, and Risk Action List).
 
 ---
 
@@ -44,7 +45,7 @@ The visualization layer is designed with a **"Navigation-First"** approach, mimi
 * **Module 00: Command Center (Landing Page)**
     * Acts as the central navigation hub.
     * Features state-based button interactivity (Hover/Press logic) to enhance user experience.
-* **Module 01: Executive View (In Progress)**
+* **Module 01: Executive View (Done)**
     * Focuses on high-level KPIs including Attrition Rate, Financial Impact, and Average Tenure.
 * **Module 02: Root Cause Lab (In Progress)**
     * Deep-dive diagnostic analysis correlating Overtime, Job Satisfaction, and Distance from Home with attrition risk.
@@ -74,7 +75,7 @@ The visualization layer is designed with a **"Navigation-First"** approach, mimi
 * [x] **Phase 1: Data Engineering** (Audit, Cleaning, View Creation)
 * [x] **Phase 2: Semantic Modeling** (DAX Measures & Financial Metrics)
 * [x] **Phase 3: UI Architecture** (Landing Page & Navigation System)
-* [ ] **Phase 4: Strategic Dashboard** (Executive View Construction)
+* [x] **Phase 4: Strategic Dashboard** (Executive View Construction)
 * [ ] **Phase 5: Diagnostic Dashboard** (Root Cause Analysis)
 * [ ] **Phase 6: Operational Detail** (Risk List & Row Level Security)
 
