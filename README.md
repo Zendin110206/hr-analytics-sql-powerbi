@@ -7,7 +7,7 @@
 ## Dashboard Architecture Preview
 ![Dashboard Landing Page](visualization/landing_page_preview.png)
 
-> **Current Status:** This project is currently under active development. The Data Engineering (SQL) pipeline and UI/UX Architecture are complete. The team is currently finalizing the visualization modules (Executive View, Root Cause Analysis, and Risk Action List).
+> **Current Status:** This project is currently under active development. The Data Engineering (SQL) pipeline and UI/UX Architecture are complete. Development is now focused on finalizing the visualization modules (Executive View, Root Cause Analysis, and Risk Action List).
 
 ---
 
