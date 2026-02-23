@@ -18,6 +18,10 @@
 *Diagnostic engine featuring salary equity scatter plots, burnout risk heatmaps, and promotion stagnation analysis.*
 ![Root Cause Lab](visualization/root_cause_preview.png)
 
+### Module 03: Root Cause Analysis Lab (Completed)
+*![Status](https://img.shields.io/badge/Status-Active_Development-007ACC)*
+![Action List](visualization/action_list_preview.png)
+
 > **Current Status:** The Data Engineering (SQL) pipeline, UI/UX Architecture, Strategic Dashboard, and Diagnostic Lab are complete. Development is now strictly focused on the final module: The Risk Action List & Employee Profiling.
 
 ---
