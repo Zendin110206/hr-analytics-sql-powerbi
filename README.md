@@ -1,71 +1,74 @@
-# HR Executive Command Center: People Analytics Platform
+# HR Executive Command Center: Predictive Analytics & Intervention Platform
 
-![MySQL](https://img.shields.io/badge/Database-MySQL_8.0-005C84?logo=mysql&logoColor=white)
-![Power BI](https://img.shields.io/badge/Visualization-Power_BI-F2C811?logo=powerbi&logoColor=black)
-![Status](https://img.shields.io/badge/Status-Active_Development-007ACC)
+## Executive Summary
 
-## Dashboard Architecture Preview
+This project represents a fully realized, enterprise-grade analytics solution engineered to diagnose Employee Attrition, quantify financial impact, and prescribe data-driven retention strategies. Unlike standard descriptive dashboards that merely report past metrics, this platform functions as a **Prescriptive Analytics Application**.
 
-### Module 00: Command Center (Landing Page)
-*Centralized navigation hub with state-based interaction logic.*
-![Dashboard Landing Page](visualization/landing_page_preview.png)
-
-### Module 01: Executive Strategic View (Completed)
-*High-level KPIs, Financial Impact Analysis ($9.25M Loss), and Workforce Demographics.*
-![Executive View](visualization/executive_view_preview.png)
-
-### Module 02: Root Cause Analysis Lab (Completed)
-*Diagnostic engine featuring salary equity scatter plots, burnout risk heatmaps, and promotion stagnation analysis.*
-![Root Cause Lab](visualization/root_cause_preview.png)
-
-### Module 03: Root Cause Analysis Lab (Completed)
-*![Status](https://img.shields.io/badge/Status-Active_Development-007ACC)*
-![Action List](visualization/action_list_preview.png)
-
-> **Current Status:** The Data Engineering (SQL) pipeline, UI/UX Architecture, Strategic Dashboard, and Diagnostic Lab are complete. Development is now strictly focused on the final module: The Risk Action List & Employee Profiling.
+By leveraging an IBM HR Analytics dataset, the system shifts the Human Resources paradigm from reactive reporting to proactive intervention. It highlights a historical $9M Bad Hiring Cost while simultaneously deploying a custom algorithmic Risk Engine to evaluate active employees, isolate root causes (e.g., compensation gaps, career stagnation), and calculate forward-looking Cost Avoidance Potential.
 
 ---
 
-## Project Overview
-This project serves as a strategic analytics solution designed to diagnose Employee Attrition and quantify Workforce Performance risks. Unlike standard reporting dashboards, this solution is architected as an **Analytics Application** with a dedicated navigation system, treating data analysis as a distinct internal product.
+## System Architecture & Module Breakdown
 
-Leveraging a dataset from IBM HR Analytics, the primary objective is to shift HR monitoring from descriptive reporting to **diagnostic analysis**. The system calculates critical financial metrics, such as the estimated **$9M Bad Hiring Cost**, and identifies high-risk employee segments to formulate data-driven retention strategies.
+The visualization layer bypasses traditional long-scroll report designs in favor of a "Navigation-First", application-like interface utilizing strict state-based logic.
 
-## Technical Implementation
+### Module 00: Command Center (Landing Page)
+
+* **Function:** Centralized navigation hub.
+* **Architecture:** Utilizes distinct active/inactive button states and strict visual hierarchy to guide executive users seamlessly through the analytical modules.
+* **Preview:** ![Dashboard Landing Page](visualization/landing_page_preview.png)
+
+### Module 01: Executive Strategic View
+
+* **Function:** Macro-level performance monitoring.
+* **Architecture:** Delivers instant visibility into core KPIs, workforce demographic segmentation (Generational and Income brackets), and the overall financial impact of historical attrition.
+* **Preview:** ![Executive View](visualization/executive_view_preview.png)
+
+### Module 02: Root Cause Analysis Lab
+
+* **Function:** Diagnostic engine for hypothesis validation.
+* **Architecture:** Deploys multidimensional analysis to identify structural issues. Features include Salary vs. Tenure scatter plots to spot "Underpaid Veterans", a Burnout Matrix correlating overtime with job satisfaction, and a full-width risk concentration heatmap across job roles.
+* **Preview:** ![Root Cause Lab](visualization/root_cause_preview.png)
+
+### Module 03: Predictive Intervention System (Action List)
+
+* **Function:** Row-level prescriptive action queue.
+* **Architecture:** Powered by a custom DAX iteration engine, this module assigns a 0-100 risk score to every active employee. It features an Executive Summary of at-risk populations, a Pareto analysis of primary risk drivers, and a prioritized intervention table complete with dynamic diagnostic tags and conditional data bars.
+* **Preview:** ![Action List](visualization/action_list_preview.png)
+
+---
+
+## Technical Implementation & Business Logic
 
 ### 1. Data Engineering & Transformation (MySQL)
-To ensure scalability and performance, this project rejects the standard workflow of loading raw CSV files directly into visualization tools. Instead, **SQL** is utilized for data hardening, logic encapsulation, and anomaly resolution before the data reaches the BI layer.
 
-* **Data Integrity & Auditing**
-    * Performed rigorous data auditing to identify schema inconsistencies and constant values.
-    * Resolved critical data ingestion issues, specifically handling hidden **UTF-8 BOM characters** in the raw CSV headers that prevented standard column recognition.
+To ensure processing efficiency and single-source-of-truth integrity, extensive data hardening was performed in the SQL layer before reaching the Business Intelligence environment.
 
-* **Feature Engineering via SQL**
-    * Developed categorical features directly in the database layer using `CASE` statements.
-    * **Generational Segmentation:** Transforming numerical Age into 'Gen Z', 'Millennials', 'Gen X', and 'Boomers'.
-    * **Socio-Economic Grouping:** Bucketing salary data into 'Low', 'Medium', and 'High' Income Groups.
-    * *Benefit:* This approach reduces the processing load on Power BI (DAX) and ensures consistent business logic across the platform.
+* **Anomaly Resolution:** Audited and resolved critical schema ingestion errors, specifically bypassing hidden UTF-8 BOM characters in raw CSV headers.
+* **Categorical Feature Engineering:** Executed database-level transformations using `CASE` statements to create analytical buckets (e.g., segmenting numerical Age into generational cohorts, and monthly income into specific socioeconomic tiers).
+* **View Abstraction:** Encapsulated the final, cleaned, and transformed dataset within a master view (`vw_hr_master`), protecting the analytical layer from underlying table alterations and pre-calculating essential binary flags.
 
-* **Logic Encapsulation (Views)**
-    * Created a master view `vw_hr_master` to serve as the single source of truth. This abstraction layer protects the dashboard from changes in the underlying raw tables and pre-calculates binary flags for attrition.
+### 2. Advanced DAX & Semantic Modeling (Power BI)
 
-### 2. Dashboard Architecture (Power BI)
-The visualization layer is designed with a **"Navigation-First"** approach, mimicking a modern web application interface rather than a static long-scroll report.
+The core intelligence of this platform relies on advanced Data Analysis Expressions (DAX) to evaluate context at both the macro (filter) and micro (row) levels.
 
-* **Module 00: Command Center (Landing Page)**
-    * Acts as the central navigation hub.
-    * Features state-based button interactivity (Hover/Press logic) to enhance user experience.
-* **Module 01: Executive View (Done)**
-    * Focuses on high-level KPIs including Attrition Rate, Financial Impact, and Average Tenure.
-* **Module 02: Root Cause Lab (Done)**
-    * A deep-dive diagnostic page designed to validate hypotheses regarding attrition drivers.
-    * **Key Features:**
-        * **Salary vs. Tenure Scatter Plot:** Identifies "Underpaid Veterans" (High tenure, low salary risks).
-        * **Burnout Matrix:** Correlates Overtime status with Job Satisfaction levels to identify burnout patterns.
-        * **Stagnation Analysis:** Tracks attrition probability based on years since last promotion.
-        * **Risk Heatmap:** A full-width matrix visualizing risk concentration across job roles.
-* **Module 03: Action List (Next Phase)**
-    * Detailed employee profiling and row-level data to identify specific individuals requiring immediate retention intervention.
+* **Custom Risk Scoring Algorithm:** Engineered an iterative evaluation measure (`AVERAGEX`) that scores individual employees based on 6 weighted corporate risk factors:
+* Career Stagnation (+30 points)
+* Department-Level Compensation Gaps (+25 points)
+* Burnout Risk / Lack of Equity (+20 points)
+* Critical Dissatisfaction (+15 points)
+* Commute Stress (+10 points)
+* Work-Life Imbalance (+5 points)
+
+
+* **Dynamic Diagnostics:** Implemented row-context logic using `MAX()` and `SUM()` wrappers to dynamically generate text-based diagnoses (e.g., "Severe Compensation Gap") for each employee in the intervention queue.
+* **Financial Quantification:** Translated attrition risk into financial metrics by calculating the Cost Avoidance Potential (estimated at 6x monthly salary per retained critical employee).
+
+### 3. Enterprise UI/UX Design
+
+* **Visual Polish:** Maintained a strict corporate color palette (IBM Blue, Red for Critical, Orange for High Risk).
+* **Data-to-Ink Ratio Optimization:** Removed default chart noise (gridlines, unnecessary axes) and utilized strategic whitespace.
+* **Conditional Formatting:** Applied dynamic background colors, font colors, and integrated data bars within tables to drastically reduce the cognitive load required to parse thousands of rows of employee data.
 
 ---
 
@@ -76,26 +79,28 @@ The visualization layer is designed with a **"Navigation-First"** approach, mimi
 │   └── HR_Employee_Attrition.csv      # Raw Data Source
 │
 ├── visualization/
-│   ├── HR_Analytics_Dashboard.pbix    # Power BI Project File (Active)
-│   ├── landing_page_preview.png       # Module 00 Screenshot
-│   ├── executive_view_preview.png     # Module 01 Screenshot
-│   └── root_cause_preview.png         # Module 02 Screenshot
+│   ├── HR_Analytics_Dashboard.pbix    # Complete Power BI Project File
+│   ├── landing_page_preview.png       # Module 00 User Interface
+│   ├── executive_view_preview.png     # Module 01 User Interface
+│   ├── root_cause_preview.png         # Module 02 User Interface
+│   └── action_list_preview.png        # Module 03 User Interface
 │
-├── HR_Analytics_Query.sql             # Complete Data Engineering Script
+├── HR_Analytics_Query.sql             # Complete MySQL Data Engineering Script
 └── README.md                          # Technical Documentation
+
 ```
 
 ---
 
-## Development Roadmap
+## Development Roadmap (Completed)
 
-* [x] **Phase 1: Data Engineering** (Audit, Cleaning, View Creation)
-* [x] **Phase 2: Semantic Modeling** (DAX Measures & Financial Metrics)
-* [x] **Phase 3: UI Architecture** (Landing Page & Navigation System)
+* [x] **Phase 1: Data Engineering** (Audit, Cleansing, SQL View Creation)
+* [x] **Phase 2: Semantic Modeling** (Base DAX Measures & Financial Metrics)
+* [x] **Phase 3: UI Architecture** (Landing Page & State-Based Navigation System)
 * [x] **Phase 4: Strategic Dashboard** (Executive View Construction)
-* [x] **Phase 5: Diagnostic Dashboard** (Root Cause Analysis)
-* [ ] **Phase 6: Operational Detail** (Risk List & Row Level Security)
+* [x] **Phase 5: Diagnostic Dashboard** (Root Cause Analysis Lab)
+* [x] **Phase 6: Prescriptive Analytics** (Custom Risk Scoring & Action List Generation)
 
 ---
 
-*Implementation by [Muhammad Zaenal Abidin Abdurrahman](https://www.linkedin.com/in/zendin1102/) - 2026*
+*Architected and developed by [Muhammad Zaenal Abidin Abdurrahman](https://www.linkedin.com/in/zendin1102/) - 2026*
