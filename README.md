@@ -1,5 +1,9 @@
 # HR Executive Command Center: Predictive Analytics & Intervention Platform
 
+![MySQL](https://img.shields.io/badge/Database-MySQL-005C84?logo=mysql&logoColor=white)
+![Power BI](https://img.shields.io/badge/Visualization-Power%20BI-F2C811?logo=powerbi&logoColor=black)
+![Status](https://img.shields.io/badge/Status-Completed-success)
+
 ## Executive Summary
 
 This project represents a fully realized, enterprise-grade analytics solution engineered to diagnose Employee Attrition, quantify financial impact, and prescribe data-driven retention strategies. Unlike standard descriptive dashboards that merely report past metrics, this platform functions as a **Prescriptive Analytics Application**.
